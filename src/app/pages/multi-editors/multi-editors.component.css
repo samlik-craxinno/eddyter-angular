@@ -1,0 +1,16 @@
+.multi-editors__header {
+  margin-bottom: 2rem;
+}
+
+.multi-editors__title {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
+  color: var(--text-h);
+}
+
+.multi-editors__lede {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--text);
+}

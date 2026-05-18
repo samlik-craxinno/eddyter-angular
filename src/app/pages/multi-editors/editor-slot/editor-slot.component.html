@@ -1,0 +1,21 @@
+<section class="editor-slot">
+  <h2 class="editor-slot__title">{{ label() }}</h2>
+
+  <eddyter-editor
+    class="editor-slot__eddyter"
+    [apiKey]="apiKey"
+    [value]="html()"
+    (valueChange)="onContentChange($event)"
+    mode="edit"
+    [toolbar]="{ mode: 'static' }"
+    [editor]="{ maxHeight: maxHeight() }"
+    (ready)="lifecycle.onReady()"
+    (focus)="lifecycle.onFocus()"
+    (blur)="lifecycle.onBlur()"
+    (authSuccess)="lifecycle.onAuthSuccess()"
+    (authError)="lifecycle.onAuthError($event)"
+  />
+
+  <h3 class="editor-slot__preview-label">Preview</h3>
+  <div class="editor-slot__preview" [innerHTML]="html()"></div>
+</section>

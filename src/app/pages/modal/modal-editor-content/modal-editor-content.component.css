@@ -1,0 +1,30 @@
+.modal-editor-content__eddyter {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.modal-editor-content__preview-label {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.modal-editor-content__preview {
+  min-height: 72px;
+  max-height: 120px;
+  overflow: auto;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--code-bg);
+  color: var(--text-h);
+  font-size: 0.9rem;
+}
+
+.modal-editor-content__preview :deep(p) {
+  margin: 0.35em 0;
+}

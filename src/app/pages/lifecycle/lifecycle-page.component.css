@@ -1,0 +1,108 @@
+.lifecycle-page__header {
+  margin-bottom: 1.25rem;
+}
+
+.lifecycle-page__title {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem;
+  color: var(--text-h);
+}
+
+.lifecycle-page__lede {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+.lifecycle-page__lede code {
+  font-size: 0.85em;
+}
+
+.lifecycle-page__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.lifecycle-page__btn {
+  font: inherit;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  cursor: pointer;
+}
+
+.lifecycle-page__btn:hover {
+  filter: brightness(0.97);
+}
+
+.lifecycle-page__btn--accent {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+}
+
+.lifecycle-page__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem 1rem;
+  margin: 0 0 1.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--code-bg);
+}
+
+.lifecycle-page__stats dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+.lifecycle-page__stats dd {
+  margin: 0.15rem 0 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.lifecycle-page__editor-slot {
+  margin-bottom: 1.5rem;
+  min-width: 0;
+}
+
+.lifecycle-page__section-title {
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem;
+  color: var(--text-h);
+}
+
+.lifecycle-page__placeholder {
+  margin: 0;
+  padding: 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.lifecycle-page__log {
+  margin: 0;
+  padding: 0.75rem 0.75rem 0.75rem 1.5rem;
+  max-height: 320px;
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.lifecycle-page__log li {
+  margin-bottom: 0.25rem;
+}

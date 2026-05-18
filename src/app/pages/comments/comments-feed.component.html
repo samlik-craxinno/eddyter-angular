@@ -1,0 +1,75 @@
+<div class="comments-feed">
+  <header class="comments-feed__header">
+    <h1 class="comments-feed__title">Comments</h1>
+    <p class="comments-feed__lede">
+      Fake social feed with dynamically mounted reply editors. Open multiple replies at once;
+      <strong>Cancel</strong> unmounts and destroys the editor instance.
+    </p>
+  </header>
+
+  <dl class="comments-feed__stats">
+    <div>
+      <dt>Active editors</dt>
+      <dd>{{ activeReplies().length }}</dd>
+    </div>
+    <div>
+      <dt>Mount count</dt>
+      <dd>{{ mountCount() }}</dd>
+    </div>
+    <div>
+      <dt>Destroy count</dt>
+      <dd>{{ destroyCount() }}</dd>
+    </div>
+  </dl>
+
+  <ul class="comments-feed__list">
+    @for (post of posts; track post.id) {
+      <li class="post-card">
+        <div class="post-card__avatar" aria-hidden="true">{{ post.avatar }}</div>
+        <div class="post-card__body">
+          <div class="post-card__meta">
+            <span class="post-card__author">{{ post.author }}</span>
+            <span class="post-card__handle">{{ post.handle }}</span>
+            <span class="post-card__time">· {{ post.timeAgo }}</span>
+          </div>
+          <p class="post-card__text">{{ post.body }}</p>
+
+          <div class="post-card__actions">
+            @if (isReplyOpen(post.id)) {
+              <span class="post-card__replying">Replying…</span>
+            } @else {
+              <button
+                type="button"
+                class="post-card__reply-btn"
+                (click)="openReply(post.id)"
+              >
+                Reply
+              </button>
+            }
+          </div>
+
+          @if (isReplyOpen(post.id)) {
+            <app-reply-editor
+              [postId]="post.id"
+              (cancel)="cancelReply(post.id)"
+              (hostLifecycle)="onHostLifecycle($event, post.id)"
+              (editorLifecycle)="onEditorLifecycle(post.id, $event)"
+            />
+          }
+        </div>
+      </li>
+    }
+  </ul>
+
+  <section class="comments-feed__log-section">
+    <h2 class="comments-feed__log-title">Lifecycle debug log</h2>
+    <ol class="comments-feed__log">
+      @for (line of reversedLogs(); track $index) {
+        <li>{{ line }}</li>
+      }
+      @if (logs().length === 0) {
+        <li class="comments-feed__log-empty">Open a reply editor to see lifecycle events.</li>
+      }
+    </ol>
+  </section>
+</div>

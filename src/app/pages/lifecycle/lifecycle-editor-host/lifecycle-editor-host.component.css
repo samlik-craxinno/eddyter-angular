@@ -1,0 +1,31 @@
+.lifecycle-host {
+  min-width: 0;
+}
+
+.lifecycle-host__eddyter {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.lifecycle-host__hint {
+  margin: 0.65rem 0 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.lifecycle-host__preview {
+  min-height: 72px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--code-bg);
+  color: var(--text-h);
+  font-size: 0.9rem;
+}
+
+.lifecycle-host__preview :deep(p) {
+  margin: 0.35em 0;
+}

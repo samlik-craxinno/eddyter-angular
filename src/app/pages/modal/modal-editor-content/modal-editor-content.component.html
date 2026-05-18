@@ -1,0 +1,19 @@
+<div class="modal-editor-content">
+  <eddyter-editor
+    class="modal-editor-content__eddyter"
+    [apiKey]="apiKey"
+    [value]="content()"
+    (valueChange)="onContentChange($event)"
+    mode="edit"
+    [toolbar]="toolbarConfig()"
+    [editor]="{ maxHeight: maxHeight() }"
+    (ready)="lifecycle.onReady()"
+    (focus)="lifecycle.onFocus()"
+    (blur)="lifecycle.onBlur()"
+    (authSuccess)="lifecycle.onAuthSuccess()"
+    (authError)="lifecycle.onAuthError($event)"
+  />
+
+  <h3 class="modal-editor-content__preview-label">Preview</h3>
+  <div class="modal-editor-content__preview" [innerHTML]="content()"></div>
+</div>

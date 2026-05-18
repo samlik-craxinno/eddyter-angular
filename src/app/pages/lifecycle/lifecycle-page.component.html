@@ -1,0 +1,70 @@
+<div class="lifecycle-page">
+  <header class="lifecycle-page__header">
+    <h1 class="lifecycle-page__title">Lifecycle</h1>
+    <p class="lifecycle-page__lede">
+      Toggle visibility or change the editor <code>key</code> to recreate the subtree.
+      Lifecycle callbacks (<code>onReady</code>, <code>onFocus</code>, <code>onBlur</code>,
+      <code>onChange</code>, <code>onAuthSuccess</code>, <code>onAuthError</code>) are
+      logged below and in the browser console.
+    </p>
+  </header>
+
+  <div class="lifecycle-page__toolbar">
+    <button type="button" class="lifecycle-page__btn" (click)="showEditor()">
+      Show Editor
+    </button>
+    <button type="button" class="lifecycle-page__btn" (click)="hideEditor()">
+      Hide Editor
+    </button>
+    <button
+      type="button"
+      class="lifecycle-page__btn lifecycle-page__btn--accent"
+      (click)="recreateEditor()"
+    >
+      Recreate Editor
+    </button>
+  </div>
+
+  <dl class="lifecycle-page__stats">
+    <div>
+      <dt>Mount count</dt>
+      <dd>{{ mountCount() }}</dd>
+    </div>
+    <div>
+      <dt>Destroy count</dt>
+      <dd>{{ destroyCount() }}</dd>
+    </div>
+    <div>
+      <dt>Visible</dt>
+      <dd>{{ visible() ? 'yes' : 'no' }}</dd>
+    </div>
+    <div>
+      <dt>Editor key</dt>
+      <dd>{{ editorKey() }}</dd>
+    </div>
+  </dl>
+
+  <section class="lifecycle-page__editor-slot">
+    <h2 class="lifecycle-page__section-title">Editor slot</h2>
+    @if (!visible()) {
+      <p class="lifecycle-page__placeholder">Editor hidden</p>
+    } @else {
+      @for (_ of [editorKey()]; track editorKey()) {
+        <app-lifecycle-editor-host
+          (hostMounted)="onHostMounted()"
+          (hostUnmounting)="onHostUnmounting()"
+          (editorLog)="onEditorLog($event)"
+        />
+      }
+    }
+  </section>
+
+  <section class="lifecycle-page__log-section">
+    <h2 class="lifecycle-page__section-title">Lifecycle logs</h2>
+    <ol class="lifecycle-page__log">
+      @for (line of reversedLogs(); track $index) {
+        <li>{{ line }}</li>
+      }
+    </ol>
+  </section>
+</div>

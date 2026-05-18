@@ -1,0 +1,46 @@
+.editor-slot {
+  margin-bottom: 2rem;
+  min-width: 0;
+}
+
+.editor-slot:last-child {
+  margin-bottom: 0;
+}
+
+.editor-slot__title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--text-h);
+}
+
+.editor-slot__eddyter {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.editor-slot__preview-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0.75rem 0 0.35rem;
+  color: var(--text-h);
+}
+
+.editor-slot__preview {
+  min-height: 120px;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--code-bg);
+  color: var(--text-h);
+  overflow: auto;
+}
+
+.editor-slot__preview :deep(p) {
+  margin: 0.4em 0;
+}
+
+.editor-slot__preview :deep(p:first-child) {
+  margin-top: 0;
+}

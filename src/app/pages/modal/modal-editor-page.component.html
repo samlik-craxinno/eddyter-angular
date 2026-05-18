@@ -1,0 +1,130 @@
+<div class="modal-page">
+  <header class="modal-page__header">
+    <h1 class="modal-page__title">Modal editor</h1>
+    <p class="modal-page__lede">
+      The Eddyter instance is created only while the modal is open. Closing the modal
+      unmounts the editor and calls <code>destroy()</code> on the SDK instance.
+    </p>
+  </header>
+
+  <section class="modal-page__controls">
+    <h2 class="modal-page__section-title">Toolbar &amp; scrolling</h2>
+
+    <fieldset class="modal-page__fieldset">
+      <legend>Toolbar mode</legend>
+      <label class="modal-page__radio">
+        <input
+          type="radio"
+          name="toolbar-mode"
+          value="sticky"
+          [checked]="toolbarMode() === 'sticky'"
+          (change)="setToolbarMode('sticky')"
+        />
+        Sticky
+      </label>
+      <label class="modal-page__radio">
+        <input
+          type="radio"
+          name="toolbar-mode"
+          value="static"
+          [checked]="toolbarMode() === 'static'"
+          (change)="setToolbarMode('static')"
+        />
+        Static
+      </label>
+    </fieldset>
+
+    <label class="modal-page__select-label">
+      <span>Editor max height (scrollable content)</span>
+      <select [value]="maxHeight()" (change)="setMaxHeight($any($event.target).value)">
+        @for (option of maxHeightOptions; track option) {
+          <option [value]="option">{{ option }}</option>
+        }
+      </select>
+    </label>
+  </section>
+
+  <dl class="modal-page__stats">
+    <div>
+      <dt>Modal</dt>
+      <dd>{{ open() ? 'open' : 'closed' }}</dd>
+    </div>
+    <div>
+      <dt>Toolbar</dt>
+      <dd>{{ toolbarMode() }}</dd>
+    </div>
+    <div>
+      <dt>Max height</dt>
+      <dd>{{ maxHeight() }}</dd>
+    </div>
+    <div>
+      <dt>Mount count</dt>
+      <dd>{{ mountCount() }}</dd>
+    </div>
+    <div>
+      <dt>Destroy count</dt>
+      <dd>{{ destroyCount() }}</dd>
+    </div>
+  </dl>
+
+  <button
+    type="button"
+    class="modal-page__open-btn"
+    (click)="openModal()"
+    [disabled]="open()"
+  >
+    Open modal editor
+  </button>
+
+  @if (open()) {
+    <div
+      class="modal-page__backdrop"
+      role="presentation"
+      (click)="onBackdropClick($event)"
+    >
+      <div
+        class="modal-page__dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+      >
+        <header class="modal-page__dialog-header">
+          <h2 id="modal-title" class="modal-page__dialog-title">Edit in modal</h2>
+          <button
+            type="button"
+            class="modal-page__close-btn"
+            aria-label="Close modal"
+            (click)="closeModal()"
+          >
+            ×
+          </button>
+        </header>
+
+        <div class="modal-page__dialog-body">
+          @for (key of [editorConfigKey()]; track key) {
+            <app-modal-editor-content
+              [toolbarMode]="toolbarMode()"
+              [maxHeight]="maxHeight()"
+              (lifecycleEvent)="onEditorLifecycle($event)"
+            />
+          }
+        </div>
+
+        <footer class="modal-page__dialog-footer">
+          <button type="button" class="modal-page__footer-btn" (click)="closeModal()">
+            Close
+          </button>
+        </footer>
+      </div>
+    </div>
+  }
+
+  <section class="modal-page__log-section">
+    <h2 class="modal-page__section-title">Lifecycle log</h2>
+    <ol class="modal-page__log">
+      @for (line of reversedLogs(); track $index) {
+        <li>{{ line }}</li>
+      }
+    </ol>
+  </section>
+</div>

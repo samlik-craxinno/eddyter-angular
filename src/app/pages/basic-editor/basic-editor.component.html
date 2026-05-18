@@ -1,0 +1,50 @@
+<div class="basic-editor">
+  <header class="basic-editor__header">
+    <div class="basic-editor__heading-row">
+      <h1 class="basic-editor__title">Basic editor</h1>
+      @if (lastSaved(); as saved) {
+        <span class="basic-editor__saved" [title]="saved.toISOString()">
+          Saved {{ saved.toLocaleTimeString() }}
+        </span>
+      }
+    </div>
+
+    <label class="basic-editor__label">
+      <span class="basic-editor__label-text">Title</span>
+      <input
+        type="text"
+        class="basic-editor__input"
+        placeholder="Document title"
+        autocomplete="off"
+        [ngModel]="title()"
+        (ngModelChange)="onTitleChange($event)"
+      />
+    </label>
+  </header>
+
+  <div class="basic-editor__grid">
+    <section class="basic-editor__panel">
+      <h2 class="basic-editor__panel-title">Editor</h2>
+      <eddyter-editor
+        class="basic-editor__eddyter"
+        editorClass="basic-editor__eddyter-inner"
+        [apiKey]="apiKey"
+        [value]="content()"
+        (valueChange)="onContentChange($event)"
+        mode="edit"
+        [toolbar]="{ mode: 'static' }"
+        [editor]="{ maxHeight: '420px' }"
+        (ready)="lifecycle.onReady()"
+        (focus)="lifecycle.onFocus()"
+        (blur)="lifecycle.onBlur()"
+        (authSuccess)="lifecycle.onAuthSuccess()"
+        (authError)="lifecycle.onAuthError($event)"
+      />
+    </section>
+
+    <section class="basic-editor__panel">
+      <h2 class="basic-editor__panel-title">Live HTML preview</h2>
+      <div class="basic-editor__preview" [innerHTML]="content()"></div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<nav class="nav-sidebar" aria-label="Main">
+  <ul class="nav-sidebar__list">
+    @for (item of items(); track item.id) {
+      <li>
+        <a
+          class="nav-sidebar__link"
+          [routerLink]="item.path"
+          routerLinkActive="nav-sidebar__link--active"
+        >
+          {{ item.label }}
+        </a>
+      </li>
+    }
+  </ul>
+</nav>

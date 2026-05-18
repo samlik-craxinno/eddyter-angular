@@ -1,0 +1,40 @@
+<div class="reply-editor">
+  <div class="reply-editor__toolbar">
+    <span class="reply-editor__label">Replying</span>
+    @if (lastSaved(); as saved) {
+      <span class="reply-editor__saved">Draft saved {{ saved.toLocaleTimeString() }}</span>
+    }
+  </div>
+
+  <eddyter-editor
+    class="reply-editor__eddyter"
+    [apiKey]="apiKey"
+    [value]="html()"
+    (valueChange)="onContentChange($event)"
+    mode="edit"
+    [toolbar]="{ mode: 'static' }"
+    [editor]="{ maxHeight: '200px' }"
+    (ready)="lifecycle.onReady()"
+    (focus)="lifecycle.onFocus()"
+    (blur)="lifecycle.onBlur()"
+    (authSuccess)="lifecycle.onAuthSuccess()"
+    (authError)="lifecycle.onAuthError($event)"
+  />
+
+  <h4 class="reply-editor__preview-title">Reply preview</h4>
+  @if (hasPreviewContent()) {
+    <div class="reply-editor__preview" [innerHTML]="html()"></div>
+  } @else {
+    <p class="reply-editor__preview-empty">Nothing to preview yet.</p>
+  }
+
+  <div class="reply-editor__actions">
+    <button
+      type="button"
+      class="reply-editor__btn reply-editor__btn--ghost"
+      (click)="onCancel()"
+    >
+      Cancel
+    </button>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="lifecycle-host">
+  <eddyter-editor
+    class="lifecycle-host__eddyter"
+    [apiKey]="apiKey"
+    [value]="content()"
+    (valueChange)="onContentChange($event)"
+    mode="edit"
+    [toolbar]="{ mode: 'sticky' }"
+    [editor]="{ maxHeight: '280px' }"
+    (ready)="lifecycle.onReady()"
+    (focus)="lifecycle.onFocus()"
+    (blur)="lifecycle.onBlur()"
+    (authSuccess)="lifecycle.onAuthSuccess()"
+    (authError)="lifecycle.onAuthError($event)"
+  />
+
+  <p class="lifecycle-host__hint">Preview (same model)</p>
+  <div class="lifecycle-host__preview" [innerHTML]="content()"></div>
+</div>
