@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { EddyterAngularComponent } from 'richtext-core-angular';
 import { EDDYTER_API_KEY } from '../../core/config/eddyter-api-key';
 import { createLifecycleHandlers } from '../../core/lifecycle/create-lifecycle-handlers';
-import 'richtext-core-angular/styles.css';
 const STORAGE_TITLE = 'basic-editor:title';
 const STORAGE_HTML = 'basic-editor:html';
 
