@@ -2,11 +2,21 @@
   <header class="basic-editor__header">
     <div class="basic-editor__heading-row">
       <h1 class="basic-editor__title">Basic editor</h1>
-      @if (lastSaved(); as saved) {
-        <span class="basic-editor__saved" [title]="saved.toISOString()">
-          Saved {{ saved.toLocaleTimeString() }}
-        </span>
-      }
+      <div class="basic-editor__heading-actions">
+        <button
+          type="button"
+          class="basic-editor__theme-toggle"
+          [attr.aria-pressed]="isDark()"
+          (click)="toggleDarkMode()"
+        >
+          {{ isDark() ? 'Light mode' : 'Dark mode' }}
+        </button>
+        @if (lastSaved(); as saved) {
+          <span class="basic-editor__saved" [title]="saved.toISOString()">
+            Saved {{ saved.toLocaleTimeString() }}
+          </span>
+        }
+      </div>
     </div>
 
     <label class="basic-editor__label">
@@ -30,6 +40,7 @@
         editorClass="basic-editor__eddyter-inner"
         [apiKey]="apiKey"
         [value]="content()"
+        [darkMode]="isDark()"
         (valueChange)="onContentChange($event)"
         mode="edit"
         [toolbar]="{ mode: 'static' }"

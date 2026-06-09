@@ -6,11 +6,12 @@ import {
   signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { EddyterAngularComponent } from 'richtext-core-angular';
+import { EddyterAngularComponent } from '@eddyter/angular';
 import { EDDYTER_API_KEY } from '../../core/config/eddyter-api-key';
 import { createLifecycleHandlers } from '../../core/lifecycle/create-lifecycle-handlers';
 const STORAGE_TITLE = 'basic-editor:title';
 const STORAGE_HTML = 'basic-editor:html';
+const STORAGE_DARK = 'basic-editor:dark';
 
 @Component({
   selector: 'app-basic-editor',
@@ -24,6 +25,7 @@ export class BasicEditorComponent implements OnInit {
   protected readonly apiKey = EDDYTER_API_KEY;
   protected readonly title = signal(this.loadTitle());
   protected readonly content = signal(this.loadHtml());
+  protected readonly isDark = signal(this.loadDarkMode());
   protected readonly lastSaved = signal<Date | null>(null);
 
   private saveTimer: ReturnType<typeof setTimeout> | null = null;
@@ -48,6 +50,21 @@ export class BasicEditorComponent implements OnInit {
     this.content.set(html);
     this.lifecycle.onChange(html);
     this.scheduleAutosave();
+  }
+
+  protected toggleDarkMode(): void {
+    this.isDark.update((dark) => !dark);
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem(STORAGE_DARK, String(this.isDark()));
+    }
+  }
+
+  private loadDarkMode(): boolean {
+    if (typeof localStorage === 'undefined') return true;
+    const stored = localStorage.getItem(STORAGE_DARK);
+    if (stored !== null) return stored === 'true';
+    if (typeof window === 'undefined') return true;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 
   private loadTitle(): string {

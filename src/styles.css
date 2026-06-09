@@ -1,4 +1,4 @@
-@import "richtext-core-angular/styles.css";
+@import "@eddyter/angular/styles.css";
 :root {
   --text: #6b6375;
   --text-h: #08060d;

@@ -7,7 +7,7 @@ import {
   output,
   signal,
 } from '@angular/core';
-import { EddyterAngularComponent } from 'richtext-core-angular';
+import { EddyterAngularComponent } from '@eddyter/angular';
 import { EDDYTER_API_KEY } from '../../../core/config/eddyter-api-key';
 import { createLifecycleHandlers } from '../../../core/lifecycle/create-lifecycle-handlers';
 
