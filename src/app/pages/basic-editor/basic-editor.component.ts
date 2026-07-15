@@ -6,7 +6,7 @@ import {
   signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { EddyterAngularComponent } from '@eddyter/angular';
+import { Eddyter } from '@eddyter/angular';
 import { EDDYTER_API_KEY } from '../../core/config/eddyter-api-key';
 import { createLifecycleHandlers } from '../../core/lifecycle/create-lifecycle-handlers';
 const STORAGE_TITLE = 'basic-editor:title';
@@ -15,7 +15,7 @@ const STORAGE_DARK = 'basic-editor:dark';
 
 @Component({
   selector: 'app-basic-editor',
-  imports: [FormsModule, EddyterAngularComponent],
+  imports: [FormsModule, Eddyter],
   templateUrl: './basic-editor.component.html',
   styleUrl: './basic-editor.component.css',
 })

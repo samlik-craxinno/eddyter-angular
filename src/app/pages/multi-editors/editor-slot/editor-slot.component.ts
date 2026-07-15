@@ -1,11 +1,11 @@
 import { Component, OnInit, input, signal } from '@angular/core';
-import { EddyterAngularComponent } from '@eddyter/angular';
+import { Eddyter } from '@eddyter/angular';
 import { EDDYTER_API_KEY } from '../../../core/config/eddyter-api-key';
 import { createLifecycleHandlers } from '../../../core/lifecycle/create-lifecycle-handlers';
 
 @Component({
   selector: 'app-editor-slot',
-  imports: [EddyterAngularComponent],
+  imports: [Eddyter],
   templateUrl: './editor-slot.component.html',
   styleUrl: './editor-slot.component.css',
 })

@@ -7,7 +7,7 @@ import {
   output,
   signal,
 } from '@angular/core';
-import { EddyterAngularComponent } from '@eddyter/angular';
+import { Eddyter } from '@eddyter/angular';
 import { EDDYTER_API_KEY } from '../../../core/config/eddyter-api-key';
 import { createLifecycleHandlers } from '../../../core/lifecycle/create-lifecycle-handlers';
 import type {
@@ -17,7 +17,7 @@ import type {
 
 @Component({
   selector: 'app-reply-editor',
-  imports: [EddyterAngularComponent],
+  imports: [Eddyter],
   templateUrl: './reply-editor.component.html',
   styleUrl: './reply-editor.component.css',
 })

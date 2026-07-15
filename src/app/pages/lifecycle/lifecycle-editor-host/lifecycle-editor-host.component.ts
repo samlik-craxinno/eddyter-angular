@@ -6,7 +6,7 @@ import {
   output,
   signal,
 } from '@angular/core';
-import { EddyterAngularComponent } from '@eddyter/angular';
+import { Eddyter } from '@eddyter/angular';
 import { EDDYTER_API_KEY } from '../../../core/config/eddyter-api-key';
 import { createLifecycleHandlers } from '../../../core/lifecycle/create-lifecycle-handlers';
 import type { LifecycleLogFn } from '../../../core/lifecycle/lifecycle.types';
@@ -14,7 +14,7 @@ import type { LifecyclePhase } from '../../../core/lifecycle/lifecycle.types';
 
 @Component({
   selector: 'app-lifecycle-editor-host',
-  imports: [EddyterAngularComponent],
+  imports: [Eddyter],
   templateUrl: './lifecycle-editor-host.component.html',
   styleUrl: './lifecycle-editor-host.component.css',
 })
